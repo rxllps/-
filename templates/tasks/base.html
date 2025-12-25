@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <title>{% block title %}TODO Лист{% endblock %}</title>
     <style>
         * {
@@ -12,8 +13,8 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'PT Sans', sans-serif;
+            background: linear-gradient(135deg, #ff85c0 0%, #ffb347 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -22,21 +23,26 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+            padding: 40px;
         }
         
         h1 {
-            color: #333;
+            color: #d94b88;
             margin-bottom: 30px;
             text-align: center;
+            font-weight: 700;
+            font-size: 32px;
+            letter-spacing: -0.5px;
         }
         
         h2 {
-            color: #555;
-            margin-top: 20px;
+            color: #d94b88;
+            margin-top: 25px;
             margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 20px;
         }
         
         .task-list {
@@ -44,20 +50,21 @@
         }
         
         .task-item {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            background: #fafbff;
+            border: none;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
             align-items: start;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
         .task-item:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 133, 192, 0.15);
+            transform: translateY(-3px);
         }
         
         .task-item.completed {
@@ -105,42 +112,52 @@
             border: none;
             cursor: pointer;
             padding: 8px 12px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 14px;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
         
         .btn-primary {
-            background: #667eea;
+            background: linear-gradient(135deg, #ff85c0 0%, #ffb347 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 28px;
             font-size: 16px;
             margin-bottom: 20px;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 133, 192, 0.3);
         }
         
         .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #ff6bb5 0%, #ff9f33 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 133, 192, 0.5);
         }
         
         .btn-edit {
             background: #ffc107;
             color: #333;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
         }
         
         .btn-edit:hover {
             background: #ffb300;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.5);
+            transform: translateY(-2px);
         }
         
         .btn-delete {
-            background: #dc3545;
+            background: #ff6b9d;
             color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
         }
         
         .btn-delete:hover {
-            background: #c82333;
+            background: #ff5588;
+            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.5);
+            transform: translateY(-2px);
         }
         
         .form-group {
@@ -167,8 +184,8 @@
         input[type="text"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #ff85c0;
+            box-shadow: 0 0 0 3px rgba(255, 133, 192, 0.1);
         }
         
         textarea {
@@ -195,25 +212,33 @@
         }
         
         .btn-submit {
-            background: #28a745;
+            background: linear-gradient(135deg, #ff85c0 0%, #ffb347 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 28px;
             font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 133, 192, 0.3);
         }
         
         .btn-submit:hover {
-            background: #218838;
+            background: linear-gradient(135deg, #ff6bb5 0%, #ff9f33 100%);
+            box-shadow: 0 6px 20px rgba(255, 133, 192, 0.4);
+            transform: translateY(-2px);
         }
         
         .btn-cancel {
-            background: #6c757d;
-            color: white;
-            padding: 12px 24px;
+            background: #e0e0e0;
+            color: #333;
+            padding: 12px 28px;
             font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .btn-cancel:hover {
-            background: #5a6268;
+            background: #d0d0d0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
         
         .empty-state {
