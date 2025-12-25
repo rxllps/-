@@ -1,0 +1,27 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Удаление задачи - TODO Лист{% endblock %}
+
+{% block content %}
+<h1>Удаление задачи</h1>
+
+<div class="confirm-delete">
+    <h2>Вы уверены?</h2>
+    <p>Вы действительно хотите удалить эту задачу? Эта операция не может быть отменена.</p>
+    
+    <div style="background: #f0f0f0; border-radius: 5px; padding: 15px; margin-bottom: 20px;">
+        <div class="task-title">{{ object.title }}</div>
+        {% if object.description %}
+            <div class="task-description" style="margin-top: 10px;">{{ object.description }}</div>
+        {% endif %}
+        <div class="task-date" style="margin-top: 10px;">Создано: {{ object.created_at|date:"d.m.Y H:i" }}</div>
+    </div>
+    
+    <form method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn-delete" style="padding: 12px 24px; font-size: 16px;">Удалить</button>
+    </form>
+    
+    <a href="{% url 'task-list' %}" class="btn-cancel" style="padding: 12px 24px; font-size: 16px;">Отмена</a>
+</div>
+{% endblock %}

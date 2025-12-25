@@ -1,0 +1,38 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Список задач - TODO Лист{% endblock %}
+
+{% block content %}
+<h1>📝 Мой TODO Лист</h1>
+
+<a href="{% url 'task-create' %}" class="btn-primary">+ Добавить новую задачу</a>
+
+{% if tasks %}
+    <ul class="task-list">
+        {% for task in tasks %}
+            <li class="task-item {% if task.completed %}completed{% endif %}">
+                <div class="task-content">
+                    <div class="task-title">
+                        {% if task.completed %}✓{% endif %} {{ task.title }}
+                    </div>
+                    {% if task.description %}
+                        <div class="task-description">{{ task.description }}</div>
+                    {% endif %}
+                    <div class="task-date">
+                        Создано: {{ task.created_at|date:"d.m.Y H:i" }}
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <a href="{% url 'task-edit' task.pk %}" class="btn-edit">Редактировать</a>
+                    <a href="{% url 'task-delete' task.pk %}" class="btn-delete">Удалить</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="empty-state">
+        <p>Нет задач. Создайте новую задачу, чтобы начать!</p>
+        <a href="{% url 'task-create' %}" class="btn-primary">Создать первую задачу</a>
+    </div>
+{% endif %}
+{% endblock %}
